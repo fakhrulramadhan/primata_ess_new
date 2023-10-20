@@ -20,11 +20,11 @@ class CustomButton extends StatelessWidget {
       onPressed: onTap,
       style: ElevatedButton.styleFrom(
           minimumSize: const Size(double.infinity, 50),
-          backgroundColor: Colors.red),
+          backgroundColor: color ?? Colors.teal),
       child: Text(
         text,
         style: TextStyle(
-          color: color == null ? Colors.white : Colors.black,
+          color: color == null ? Colors.black : Colors.white,
           fontSize: size ?? 15, //kalau enggak diisi uknya 15
         ),
       ),

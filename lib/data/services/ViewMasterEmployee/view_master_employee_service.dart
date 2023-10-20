@@ -36,4 +36,30 @@ class ViewMasterEmployeeListService {
       return const Left("failed to load Employee");
     }
   }
+
+  Future<Either<String, ViewMasterEmployeeListModel>>
+      getEmployeeListNew() async {
+    // final tokenJwt = await AuthLocalDatasource().getToken();
+
+    const noAbsen = NoAbsen;
+    // print(model.toRawJson());
+
+    final response = await http.post(
+      Uri.parse(
+          '${GlobalVariables.baseUrl}/ViewMasterEmployeeList/${GlobalVariables.Kodekar}'),
+      headers: <String, String>{
+        'Accept': 'application/json',
+      },
+      //body: model.toJson(),
+    );
+
+    if (response.statusCode == 200) {
+      return Right(
+          ViewMasterEmployeeListModel.fromJson(json.decode(response.body)[0]));
+      //return Right(ViewMasterEmployeeListModel.fromRawJson(response.body));
+    } else {
+      //return Left("${response.reasonPhrase}");
+      return const Left("failed to load Employee");
+    }
+  }
 }

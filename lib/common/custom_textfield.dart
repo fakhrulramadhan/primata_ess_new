@@ -4,11 +4,13 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final int? maxLines;
+  final Widget? icon;
   const CustomTextField({
     Key? key,
     required this.controller,
     required this.hintText,
     this.maxLines,
+    this.icon,
   }) : super(key: key);
 
   @override
@@ -25,7 +27,8 @@ class CustomTextField extends StatelessWidget {
           enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(
             color: Colors.black,
-          ))),
+          )),
+          prefixIcon: icon),
       validator: (val) {
         if (val == null || val.isEmpty) {
           return "$hintText Harap Diisi";

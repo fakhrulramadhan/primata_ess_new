@@ -8,12 +8,12 @@ import 'package:primata_ess_new/data/model/Login_Response/login_response_model.d
 class LoginRemoteService {
   Future<Either<String, LoginResponseModel>> login(
       LoginRequestModel model) async {
-    final response = await http.get(
+    final response = await http.post(
       Uri.parse('https://reqres.in/api/login'),
       headers: <String, String>{
         //'Content-Type': ' text/plain; charset=utf-8',
       },
-      //body: model.toJson(),
+      body: model.toJson(),
     );
 
     var jsonResponse = jsonDecode(response.body);
