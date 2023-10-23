@@ -5,6 +5,7 @@ abstract class HistoryAbsensiOfflineTransferEvent {}
 class AddHistoryAbsensiOfflineTransferEvent
     extends HistoryAbsensiOfflineTransferEvent {
   HistoryAbsensiOfflineTransferModel data;
+
   AddHistoryAbsensiOfflineTransferEvent({
     required this.data,
   });

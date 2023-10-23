@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:primata_ess_new/bloc/gmap/gmap_bloc.dart';
 import 'package:primata_ess_new/bloc/history_absensi_offline_transfer/history_absensi_offline_transfer_bloc.dart';
 import 'package:primata_ess_new/data/model/Absensi_In_Out/history_absensi_offline_transfers_model.dart';
+import 'package:primata_ess_new/presentation/home/home_page.dart';
 
 class AddClockIn extends StatefulWidget {
   const AddClockIn({super.key});
@@ -26,7 +27,7 @@ class _AddClockInState extends State<AddClockIn> {
   String formatTime = DateFormat('hh:mm').format(DateTime.now());
   String formatHari = DateFormat('EEEE').format(DateTime.now());
 
-   LatLng? position;
+  LatLng? position;
 
   @override
   void initState() {
@@ -113,34 +114,136 @@ class _AddClockInState extends State<AddClockIn> {
                   ),
                 ),
                 onTap: () {},
-                onChanged: (value) {
-                  
-                },
-                
+                onChanged: (value) {},
               ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              //buat build latitude longitudenya
               BlocConsumer<GmapBloc, GmapState>(
-                  listener: (context, state) {
-                    // TODO: implement listener
-                   
-                  },
-                  builder: (context, state) {
-                    return state.maybeWhen(
-                      orElse: () {
+                listener: (context, state) {
+                  // TODO: implement listener
+                },
+                builder: (context, state) {
+                  return state.maybeWhen(
+                    orElse: () {
                       return const Center(
                         child: CircularProgressIndicator(),
-                      );  
+                      );
                     },
                     loaded: (model) {
-                      posi
+                      position = model.latLng;
+
+                      return Column(
+                        children: [
+                          TextFormField(
+                            controller: _latitudeController,
+                            enabled: false,
+                            textAlign: TextAlign.left,
+                            style: const TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w400),
+                            decoration: InputDecoration(
+                                labelText: "${position!.latitude}",
+                                prefixIcon: const Icon(
+                                  Icons.map,
+                                  size: 24.0,
+                                ),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(16))),
+                            onTap: () {},
+                            onChanged: (value) {
+                              _latitudeController.text =
+                                  "${position!.latitude}";
+                            },
+                          ),
+                          const SizedBox(
+                            height: 10.0,
+                          ),
+                          TextFormField(
+                            controller: _longitudeController,
+                            enabled: false,
+                            textAlign: TextAlign.left,
+                            style: const TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w400),
+                            decoration: InputDecoration(
+                                labelText: "${position!.longitude}",
+                                prefixIcon: const Icon(
+                                  Icons.map,
+                                  size: 24.0,
+                                ),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(16))),
+                            onTap: () {},
+                            onChanged: (value) {
+                              _longitudeController.text =
+                                  "${position!.longitude}";
+                            },
+                          ),
+                          const SizedBox(
+                            height: 10.0,
+                          ),
+                        ],
+                      );
                     },
-                    );
-                  },
-                ),
+                  );
+                },
+              ),
               //buat tombol simpan datanya
-              BlocBuilder<HistoryAbsensiOfflineTransferBloc,
+              BlocConsumer<HistoryAbsensiOfflineTransferBloc,
                   HistoryAbsensiOfflineTransferState>(
+                listener: (context, state) {
+                  // TODO: implement listener
+
+                  //kasih feedback kalau error
+                  if (state is HistoryAbsensiOfflineTransferError) {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text("Maaf, ada Data yang belum diisi"),
+                    ));
+                  }
+
+                  if (state is HistoryAbsensiOfflineTransferLoaded) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const HomePage()),
+                    );
+                  }
+                },
                 builder: (context, state) {
-                  return Container();
+                  if (state is HistoryAbsensiOfflineTransferLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  return Card(
+                    color: Colors.teal,
+                    elevation: 5,
+                    child: SizedBox(
+                      height: 50,
+                      child: InkWell(
+                        splashColor: Colors.white,
+                        onTap: () async {
+                          final model = HistoryAbsensiOfflineTransferModel(
+                              autoNo: 1,
+                              terminalId: 2,
+                              pinid: "1",
+                              tanggal: DateTime.now(),
+                              verifyResult: 1,
+                              functionKey: 1,
+                              recover: false,
+                              sumber: "HP",
+                              bundleNo: 0,
+                              mesinId: "1",
+                              latitude: position!.latitude,
+                              longitude: position!.longitude);
+                          context.read<HistoryAbsensiOfflineTransferBloc>().add(
+                              AddHistoryAbsensiOfflineTransferEvent(
+                                  data: model));
+                        },
+                      ),
+                    ),
+                  );
                 },
               )
             ],
