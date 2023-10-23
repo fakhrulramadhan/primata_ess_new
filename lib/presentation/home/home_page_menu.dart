@@ -1,8 +1,7 @@
-import 'dart:js_interop';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:primata_ess_new/bloc/get_view_master_employee/get_view_master_employee_bloc.dart';
+import 'package:primata_ess_new/data/services/login_local_service.dart';
 import 'package:primata_ess_new/presentation/login/login_page.dart';
 
 class HomePageMenu extends StatefulWidget {
@@ -64,14 +63,11 @@ class _HomePageMenuState extends State<HomePageMenu>
             child: Column(
               // ignore: prefer_const_literals_to_create_immutables
               children: [
-                ClipOval(
-                  child: SizedBox(
-                    width: 90.0,
-                    height: 90.0,
-                    child: Image.asset(
-                      "assets/images/avatar.png",
-                      fit: BoxFit.fill,
-                    ),
+                CircleAvatar(
+                  maxRadius: 30,
+                  child: Image.asset(
+                    "assets/images/avatar.png",
+                    fit: BoxFit.fill,
                   ),
                 ),
                 const Padding(
@@ -151,7 +147,7 @@ class _HomePageMenuState extends State<HomePageMenu>
 
         //pada saat data selesai termuat
         if (state is GetViewMasterEmployeeLoaded) {
-          if (state.data.isNull) {
+          if (state.data == null) {
             return const Center(
               child: Text("Data Empty"),
             );
@@ -160,7 +156,8 @@ class _HomePageMenuState extends State<HomePageMenu>
           //ini kalau datanya ada
           return Drawer(
             child: Padding(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.only(
+                  top: 25, left: 10, right: 10, bottom: 10),
               child: Column(
                 children: [
                   Text(
@@ -177,9 +174,9 @@ class _HomePageMenuState extends State<HomePageMenu>
                     width: 90,
                     child: ClipOval(
                       child: Image.asset(
-                        "assets/icon/icon.png",
-                        width: 120.0,
-                        height: 120.0,
+                        "assets/images/avatar.png",
+                        width: 50.0,
+                        height: 50.0,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -248,8 +245,15 @@ class _HomePageMenuState extends State<HomePageMenu>
                       size: 24.0,
                     ),
                     title: const Text("Logout"),
-                    onTap: () {
-                      _signOut();
+                    onTap: () async {
+                      //_signOut();
+                      await LoginLocalService().removeAuthData();
+
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const LoginPage()),
+                      );
                     },
                   )
                 ],

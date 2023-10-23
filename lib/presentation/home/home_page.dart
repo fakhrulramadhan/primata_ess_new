@@ -1,5 +1,3 @@
-import 'dart:js_interop';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:primata_ess_new/bloc/get_view_master_employee/get_view_master_employee_bloc.dart';
@@ -76,7 +74,7 @@ class _HomePageState extends State<HomePage> {
             }
 
             if (state is GetViewMasterEmployeeLoaded) {
-              if (state.data.isNull) {
+              if (state.data == null) {
                 return const Center(
                   child: Text("Data Empty"),
                 );
@@ -180,6 +178,7 @@ class _HomePageState extends State<HomePage> {
                                 // );
                               },
                               child: Container(
+                                height: 120,
                                 decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius: const BorderRadius.all(
@@ -215,7 +214,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                           SizedBox(
                             width: 100.0,
-                            height: 100.0,
+                            height: 120,
                             child: GestureDetector(
                               onTap: () async {
                                 // Navigator.push(
@@ -261,7 +260,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                           SizedBox(
                             width: 100.0,
-                            height: 100.0,
+                            height: 120,
                             child: GestureDetector(
                               onTap: () async {
                                 // Navigator.push(
@@ -307,7 +306,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                           SizedBox(
                             width: 100.0,
-                            height: 100.0,
+                            height: 120,
                             child: GestureDetector(
                               onTap: () async {
                                 // Navigator.push(
@@ -353,7 +352,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                           SizedBox(
                             width: 100.0,
-                            height: 100.0,
+                            height: 120,
                             child: GestureDetector(
                               onTap: () async {
                                 // Navigator.push(
@@ -399,7 +398,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                           SizedBox(
                             width: 100.0,
-                            height: 100.0,
+                            height: 120,
                             child: GestureDetector(
                               onTap: () async {
                                 _sweetAlert(context);
@@ -440,7 +439,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                           SizedBox(
                             width: 100.0,
-                            height: 100.0,
+                            height: 120,
                             child: GestureDetector(
                               onTap: () {
                                 _sweetAlert(context);

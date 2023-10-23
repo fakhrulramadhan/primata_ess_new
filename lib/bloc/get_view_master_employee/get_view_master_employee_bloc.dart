@@ -19,7 +19,7 @@ class GetViewMasterEmployeeBloc
       emit(GetViewMasterEmployeeLoading());
       final result = await service.getEmployeeListNew();
       result.fold((l) => emit(GetViewMasterEmployeeError()),
-          (r) => GetViewMasterEmployeeLoaded(data: r));
+          (r) => emit(GetViewMasterEmployeeLoaded(data: r)));
     });
   }
 }

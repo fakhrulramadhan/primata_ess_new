@@ -44,14 +44,16 @@ class ViewMasterEmployeeListService {
     const noAbsen = NoAbsen;
     // print(model.toRawJson());
 
-    final response = await http.post(
+    final response = await http.get(
       Uri.parse(
           '${GlobalVariables.baseUrl}/ViewMasterEmployeeList/${GlobalVariables.Kodekar}'),
       headers: <String, String>{
-        'Accept': 'application/json',
+        //'Accept': 'application/json',
       },
       //body: model.toJson(),
     );
+
+    print(response.body[0]);
 
     if (response.statusCode == 200) {
       return Right(

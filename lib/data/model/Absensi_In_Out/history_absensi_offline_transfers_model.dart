@@ -1,15 +1,16 @@
 import 'dart:convert';
 
-List<HistoryAbsensiTransfersModel> historyAbsensiOfflineTransferFromJson(
+List<HistoryAbsensiOfflineTransferModel> historyAbsensiOfflineTransferFromJson(
         String str) =>
-    List<HistoryAbsensiTransfersModel>.from(
-        json.decode(str).map((x) => HistoryAbsensiTransfersModel.fromJson(x)));
+    List<HistoryAbsensiOfflineTransferModel>.from(json
+        .decode(str)
+        .map((x) => HistoryAbsensiOfflineTransferModel.fromJson(x)));
 
 String historyAbsensiOfflineTransferToJson(
-        List<HistoryAbsensiTransfersModel> data) =>
+        List<HistoryAbsensiOfflineTransferModel> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class HistoryAbsensiTransfersModel {
+class HistoryAbsensiOfflineTransferModel {
   final int? no;
   final dynamic autoNo;
   final dynamic terminalId;
@@ -24,7 +25,7 @@ class HistoryAbsensiTransfersModel {
   final dynamic latitude;
   final dynamic longitude;
 
-  HistoryAbsensiTransfersModel({
+  HistoryAbsensiOfflineTransferModel({
     this.no,
     this.autoNo,
     this.terminalId,
@@ -40,7 +41,7 @@ class HistoryAbsensiTransfersModel {
     this.longitude,
   });
 
-  HistoryAbsensiTransfersModel copyWith({
+  HistoryAbsensiOfflineTransferModel copyWith({
     int? no,
     dynamic autoNo,
     dynamic terminalId,
@@ -55,7 +56,7 @@ class HistoryAbsensiTransfersModel {
     dynamic latitude,
     dynamic longitude,
   }) =>
-      HistoryAbsensiTransfersModel(
+      HistoryAbsensiOfflineTransferModel(
         no: no ?? this.no,
         autoNo: autoNo ?? this.autoNo,
         terminalId: terminalId ?? this.terminalId,
@@ -71,13 +72,14 @@ class HistoryAbsensiTransfersModel {
         longitude: longitude ?? this.longitude,
       );
 
-  factory HistoryAbsensiTransfersModel.fromRawJson(String str) =>
-      HistoryAbsensiTransfersModel.fromJson(json.decode(str));
+  factory HistoryAbsensiOfflineTransferModel.fromRawJson(String str) =>
+      HistoryAbsensiOfflineTransferModel.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory HistoryAbsensiTransfersModel.fromJson(Map<String, dynamic> json) =>
-      HistoryAbsensiTransfersModel(
+  factory HistoryAbsensiOfflineTransferModel.fromJson(
+          Map<String, dynamic> json) =>
+      HistoryAbsensiOfflineTransferModel(
         no: json["no"],
         autoNo: json["autoNo"],
         terminalId: json["terminalId"],

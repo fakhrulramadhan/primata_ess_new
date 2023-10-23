@@ -11,7 +11,7 @@ const _baseUrl = GlobalVariables.baseUrl;
 
 DateTime today = DateTime.now();
 
-class ViewMasterEmployeeProfileService {
+class GetViewMasterEmployeeLoaded {
   Future<Either<String, ViewMasterEmployeeProfileModel>> getEmployeeProfile(
       ViewMasterEmployeeListModel model) async {
     // final tokenJwt = await AuthLocalDatasource().getToken();
