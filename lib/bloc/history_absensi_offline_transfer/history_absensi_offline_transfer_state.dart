@@ -15,15 +15,15 @@ class HistoryAbsensiOfflineTransferLoaded
     required this.data,
   });
 
-  // @override
-  // bool operator ==(Object other) {
-  //   if (identical(this, other)) return true;
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
 
-  //   return other is HistoryAbsensiOfflineTransferLoaded && other.data == data;
-  // }
+    return other is HistoryAbsensiOfflineTransferLoaded && other.data == data;
+  }
 
-  // @override
-  // int get hashCode => data.hashCode;
+  @override
+  int get hashCode => data.hashCode;
 }
 
 class HistoryAbsensiOfflineTransferError

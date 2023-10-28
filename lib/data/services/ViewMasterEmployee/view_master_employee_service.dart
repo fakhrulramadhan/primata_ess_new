@@ -48,7 +48,7 @@ class ViewMasterEmployeeListService {
       Uri.parse(
           '${GlobalVariables.baseUrl}/ViewMasterEmployeeList/${GlobalVariables.Kodekar}'),
       headers: <String, String>{
-        //'Accept': 'application/json',
+        'Accept': 'application/json',
       },
       //body: model.toJson(),
     );

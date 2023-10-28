@@ -32,7 +32,10 @@ class HistoryAbsensiOfflineTransferService {
         'Content-Type': 'application/json',
       },
       body: jsonEncode(model.toJson()),
+      //body: model pakai ini error
     );
+
+    print(response.body);
 
     if (response.statusCode == 200) {
       return Right(
@@ -41,7 +44,8 @@ class HistoryAbsensiOfflineTransferService {
         ),
       );
     } else {
-      return const Left('API ERROR');
+      print(response.reasonPhrase);
+      return Left('${response.reasonPhrase}');
     }
   }
 }

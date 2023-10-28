@@ -18,6 +18,7 @@ class _LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final _loginFormKey = GlobalKey<FormState>();
+  bool _passwordVisible = false;
 
   @override
   void dispose() {
@@ -25,6 +26,14 @@ class _LoginPageState extends State<LoginPage> {
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
+  }
+
+  //fungsi ketika page pertama kali diuka
+  @override
+  void initState() {
+    // TODO: implement initState
+    _passwordVisible = false;
+    super.initState();
   }
 
   @override
@@ -88,10 +97,27 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       CustomTextField(
                         controller: passwordController,
+                        obsscureText: !_passwordVisible,
                         hintText: "Password",
                         icon: const Icon(
                           Icons.lock,
                           size: 24.0,
+                        ),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            // Based on passwordVisible state choose the icon
+                            _passwordVisible
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            color: Colors.black,
+                            size: 25,
+                          ),
+                          onPressed: () {
+                            // Update the state i.e. toogle the state of passwordVisible variable
+                            setState(() {
+                              _passwordVisible = !_passwordVisible;
+                            });
+                          },
                         ),
                       ),
                       const SizedBox(
