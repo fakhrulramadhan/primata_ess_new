@@ -115,26 +115,6 @@ class _AddClockInState extends State<AddClockIn> {
     //super.initState();
   }
 
-  // void permissionLocartion() async {
-  //   _serviceEnabled = await location.serviceEnabled();
-  //   if (!_serviceEnabled) {
-  //     _serviceEnabled = await location.requestService();
-  //     context.read<GmapBloc>().add(const GmapEvent.getCurrentLocation());
-  //     if (!_serviceEnabled) {
-  //       return;
-  //     }
-  //   }
-
-  //   _permissionGranted = await location.hasPermission();
-  //   if (_permissionGranted == PermissionStatus.denied) {
-  //     _permissionGranted = await location.requestPermission();
-  //     if (_permissionGranted != PermissionStatus.granted) {
-  //       return;
-  //     }
-  //   }
-  //   _locationData = await location.getLocation();
-  // }
-
   double? latitude;
   double? longitude;
 
@@ -302,89 +282,6 @@ class _AddClockInState extends State<AddClockIn> {
                         },
                       ),
 
-                      //buat build latitude longitudenya
-                      // BlocConsumer<GmapBloc, GmapState>(
-                      //   listener: (context, state) {
-                      //     // TODO: implement listener
-                      //   },
-                      //   builder: (context, state) {
-                      //     return state.maybeWhen(
-                      //       orElse: () {
-                      //         return const Center(
-                      //           child: CircularProgressIndicator(),
-                      //         );
-                      //       },
-                      //       loaded: (model) {
-                      //         position = model.latLng;
-
-                      //         return Column(
-                      //           children: [
-                      //             TextFormField(
-                      //               controller: _latitudeController,
-                      //               enabled: false,
-                      //               textAlign: TextAlign.left,
-                      //               style: const TextStyle(
-                      //                   color: Colors.black,
-                      //                   fontWeight: FontWeight.w400),
-                      //               decoration: InputDecoration(
-                      //                   labelText: "${_locationData.latitude}",
-                      //                   prefixIcon: const Icon(
-                      //                     Icons.map,
-                      //                     size: 24.0,
-                      //                   ),
-                      //                   border: OutlineInputBorder(
-                      //                       borderRadius: BorderRadius.circular(16))),
-                      //               onTap: () {},
-                      //               onChanged: (value) {
-                      //                 _latitudeController.text =
-                      //                     "${position!.latitude}";
-                      //               },
-                      //               validator: (val) {
-                      //                 if (val == null || val.isEmpty) {
-                      //                   return "Latitude Harap Diisi";
-                      //                 }
-                      //                 return null;
-                      //               },
-                      //             ),
-                      //             const SizedBox(
-                      //               height: 10.0,
-                      //             ),
-                      //             TextFormField(
-                      //               controller: _longitudeController,
-                      //               enabled: false,
-                      //               textAlign: TextAlign.left,
-                      //               style: const TextStyle(
-                      //                   color: Colors.black,
-                      //                   fontWeight: FontWeight.w400),
-                      //               decoration: InputDecoration(
-                      //                   labelText: "${position!.longitude}",
-                      //                   prefixIcon: const Icon(
-                      //                     Icons.map,
-                      //                     size: 24.0,
-                      //                   ),
-                      //                   border: OutlineInputBorder(
-                      //                       borderRadius: BorderRadius.circular(16))),
-                      //               onTap: () {},
-                      //               onChanged: (value) {
-                      //                 _longitudeController.text =
-                      //                     "${position!.longitude}";
-                      //               },
-                      //               validator: (val) {
-                      //                 if (val == null || val.isEmpty) {
-                      //                   return "Longitude Harap Diisi";
-                      //                 }
-                      //                 return null;
-                      //               },
-                      //             ),
-                      //             const SizedBox(
-                      //               height: 10.0,
-                      //             ),
-                      //           ],
-                      //         );
-                      //       },
-                      //     );
-                      //   },
-                      // ),
                       //buat tombol simpan datanya
                       BlocConsumer<HistoryAbsensiOfflineTransferBloc,
                           HistoryAbsensiOfflineTransferState>(
@@ -468,27 +365,27 @@ class _AddClockInState extends State<AddClockIn> {
               const SizedBox(
                 height: 20.0,
               ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blueGrey,
-                ),
-                onPressed: () async {
-                  Position position = await getLocation();
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text(
-                          "Lokasi Anda Saat Ini : Latitude : ${position.latitude} dan Longitude : ${position.longitude}")));
-                  setState(() {
-                    latitude = position.latitude;
-                    longitude = position.longitude;
-                  });
-                },
-                child: const Text(
-                  "Save",
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-              ),
+              // ElevatedButton(
+              //   style: ElevatedButton.styleFrom(
+              //     backgroundColor: Colors.blueGrey,
+              //   ),
+              //   onPressed: () async {
+              //     Position position = await getLocation();
+              //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              //         content: Text(
+              //             "Lokasi Anda Saat Ini : Latitude : ${position.latitude} dan Longitude : ${position.longitude}")));
+              //     setState(() {
+              //       latitude = position.latitude;
+              //       longitude = position.longitude;
+              //     });
+              //   },
+              //   child: const Text(
+              //     "Save",
+              //     style: TextStyle(
+              //       color: Colors.white,
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),

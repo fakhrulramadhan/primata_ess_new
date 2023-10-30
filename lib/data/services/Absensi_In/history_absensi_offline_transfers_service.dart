@@ -27,25 +27,53 @@ class HistoryAbsensiOfflineTransferService {
       HistoryAbsensiOfflineTransferModel model) async {
     //final token = await AuthLocalDatasource().getToken();
     final response = await http.post(
-      Uri.parse('${GlobalVariables.baseUrl}/HistoryAbsensiOfflineTransfers'),
-      headers: <String, String>{
-        'Content-Type': 'application/json',
-      },
-      body: jsonEncode(model.toJson()),
-      //body: model pakai ini error
-    );
+        Uri.parse('${GlobalVariables.baseUrl}/HistoryAbsensiOfflineTransfers'),
+        headers: <String, String>{
+          'Content-Type': 'application/json',
+        },
+        //body: jsonEncode(model.toJson()),
+        //body: model pakai ini error
+        body: jsonEncode(model));
 
     print(response.body);
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201) {
       return Right(
         HistoryAbsensiOfflineTransferModel.fromJson(
           jsonDecode(response.body),
         ),
       );
+      //return response.body;
     } else {
       print(response.reasonPhrase);
       return Left('${response.reasonPhrase}');
     }
   }
+
+  // Future<Either<dynamic, HistoryAbsensiOfflineTransferModel>> addHistory(
+  //     HistoryAbsensiOfflineTransferModel model) async {
+  //   //final token = await AuthLocalDatasource().getToken();
+  //   final response = await http.post(
+  //       Uri.parse('${GlobalVariables.baseUrl}/HistoryAbsensiOfflineTransfers'),
+  //       headers: <String, String>{
+  //         'Content-Type': 'application/json',
+  //       },
+  //       //body: jsonEncode(model.toJson()),
+  //       //body: model pakai ini error
+  //       body: json.encode(model));
+
+  //   print(response.body);
+
+  //   if (response.statusCode == 201) {
+  //     // return Right(
+  //     //   HistoryAbsensiOfflineTransferModel.fromJson(
+  //     //     jsonDecode(response.body),
+  //     //   ),
+  //     // );
+  //     return Right(jsonDecode(response.body));
+  //   } else {
+  //     print(response.reasonPhrase);
+  //     return Left('${response.reasonPhrase}');
+  //   }
+  // }
 }
