@@ -151,6 +151,7 @@ class _LoginPageState extends State<LoginPage> {
                           }
                           return CustomButton(
                             text: "Login",
+                            color: Colors.teal,
                             onTap: () {
                               if (_loginFormKey.currentState!.validate()) {
                                 final model = LoginRequestModel(
