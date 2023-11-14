@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:primata_ess_new/bloc/get_history_absensi_in/get_history_absensi_in_bloc.dart';
+import 'package:primata_ess_new/bloc/get_leave_detail/get_leave_detail_bloc.dart';
+import 'package:primata_ess_new/bloc/get_list_leave_summary/get_list_leave_summary_bloc.dart';
 import 'package:primata_ess_new/bloc/get_view_master_employee/get_view_master_employee_bloc.dart';
 import 'package:primata_ess_new/bloc/history_absensi_offline_transfer/history_absensi_offline_transfer_bloc.dart';
 import 'package:primata_ess_new/bloc/login/login_bloc.dart';
 import 'package:primata_ess_new/data/services/Absensi_In/absensi_In_service.dart';
 import 'package:primata_ess_new/data/services/Absensi_In/history_absensi_offline_transfers_service.dart';
+import 'package:primata_ess_new/data/services/Leave/trans_leave_service.dart';
+import 'package:primata_ess_new/data/services/Leave/view_leave_summary_all_service.dart';
 import 'package:primata_ess_new/data/services/Login/login_remote_service.dart';
 import 'package:primata_ess_new/data/services/ViewMasterEmployee/view_master_employee_service.dart';
 import 'package:primata_ess_new/presentation/clock_in/add_clock_in.dart';
 import 'package:primata_ess_new/presentation/clock_in/list_clock_in.dart';
+import 'package:primata_ess_new/presentation/home/home_page.dart';
+import 'package:primata_ess_new/presentation/leave/leave_detail_page.dart';
+import 'package:primata_ess_new/presentation/leave/leave_page.dart';
 import 'package:primata_ess_new/presentation/login/login_page.dart';
 
 void main() {
@@ -77,14 +84,13 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => LoginBloc(LoginRemoteService()),
+          child: const LoginPage(),
         ),
         BlocProvider(
           create: (context) =>
               GetViewMasterEmployeeBloc(ViewMasterEmployeeListService()),
+          child: const HomePage(),
         ),
-        // BlocProvider(
-        //   create: (context) => GmapBloc(GmapService()),
-        // ),
         BlocProvider(
           create: (context) => HistoryAbsensiOfflineTransferBloc(
             HistoryAbsensiOfflineTransferService(),
@@ -94,7 +100,16 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => GetHistoryAbsensiInBloc(AbsensiInService()),
           child: const ListClockInPage(),
-        )
+        ),
+        BlocProvider(
+          create: (context) => GetLeaveDetailBloc(TransLeaveService()),
+          child: const LeaveDetailPage(),
+        ),
+        BlocProvider(
+          create: (context) =>
+              GetListLeaveSummaryBloc(ViewLeaveSummaryAllService()),
+          child: const LeavePage(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

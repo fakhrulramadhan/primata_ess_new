@@ -49,9 +49,110 @@ class _LeaveDetailPageState extends State<LeaveDetailPage> {
                             offset: const Offset(0.0, 3.0),
                             blurRadius: 15)
                       ]),
-                  child: const Flexible(
+                  child: Flexible(
                       child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
+                    child: BlocBuilder<GetLeaveDetailBloc, GetLeaveDetailState>(
+                      builder: (context, state) {
+                        if (state is GetLeaveDetailStateError) {
+                          return const Center(
+                            child: Text("Data Error"),
+                          );
+                        }
+
+                        if (state is GetLeaveDetailStateLoading) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+
+                        if (state is GetLeaveDetailStateLoaded) {
+                          if (state.data == null) {
+                            return const Center(
+                              child: Text("Data Empty"),
+                            );
+                          }
+                          return DataTable(
+                              columns: const [
+                                DataColumn(
+                                    label: Text(
+                                      "START DATE",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.blue,
+                                      ),
+                                    ),
+                                    numeric: false),
+                                DataColumn(
+                                    label: Text(
+                                      "REFF",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w900,
+                                        color: Colors.blue,
+                                      ),
+                                    ),
+                                    numeric: false),
+                                DataColumn(
+                                    label: Text(
+                                      "DESCRIPTION",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w900,
+                                        color: Colors.blue,
+                                      ),
+                                    ),
+                                    numeric: false),
+                                DataColumn(
+                                    label: Text(
+                                      "ENTITLEMENT",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w900,
+                                        color: Colors.blue,
+                                      ),
+                                    ),
+                                    numeric: false),
+                                DataColumn(
+                                    label: Text(
+                                      "FORTFEITED",
+                                      style: TextStyle(
+                                          color: Colors.blue,
+                                          fontWeight: FontWeight.w900),
+                                    ),
+                                    numeric: false),
+                                DataColumn(
+                                    label: Text(
+                                      "REMAINING",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w900,
+                                        color: Colors.blue,
+                                      ),
+                                    ),
+                                    numeric: false)
+                              ],
+                              rows: List.generate(leaveDetail.length, (index) {
+                                return DataRow(cells: <DataCell>[
+                                  DataCell(Text(formatTgl.format(DateTime.parse(
+                                      '${state.data[index].startDate}')))),
+                                  DataCell(Text("${state.data[index].reff}")),
+                                  DataCell(
+                                    Text("${state.data[index].keterangan}"),
+                                  ),
+                                  DataCell(
+                                    Text("${state.data[index].entitlement}"),
+                                  ),
+                                  DataCell(
+                                    Text("${state.data[index].forfeited}"),
+                                  ),
+                                  DataCell(
+                                    Text("${state.data[index].remaining}"),
+                                  )
+                                ]);
+                              }));
+                        }
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      },
+                    ),
                   )),
                 ),
               )
