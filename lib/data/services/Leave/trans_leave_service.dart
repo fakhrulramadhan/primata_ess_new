@@ -7,7 +7,34 @@ import '../../../common/global_variables.dart';
 import 'package:http/http.dart' as http;
 
 class TransLeaveService {
-  Future<Either<String, List<TransLeavesModel>>> getLeaveDetail(
+  Future<Either<String, List<TransLeavesModel>>> getLeaveDetail() async {
+    // final tokenJwt = await AuthLocalDatasource().getToken();
+
+    // print(model.toRawJson());
+
+    final response = await http.get(
+      Uri.parse(
+          '${GlobalVariables.baseUrl}/TransLeaves?id=201810024&leave=AL"'),
+      headers: <String, String>{
+        "Accept": "application/json",
+      },
+      //body: model.toJson(),
+    );
+
+    if (response.statusCode == 200) {
+      List<TransLeavesModel> hasil;
+      hasil = (json.decode(response.body) as List)
+          .map((e) => TransLeavesModel.fromJson(e))
+          .toList();
+
+      return Right(hasil);
+      //return Right(GetHistoryAbsensiTransfersModel.fromRawJson(response.body));
+    } else {
+      return Left("${response.reasonPhrase}");
+    }
+  }
+
+  Future<Either<String, List<TransLeavesModel>>> gotLeaveDetail(
       List<TransLeavesModel> model) async {
     // final tokenJwt = await AuthLocalDatasource().getToken();
 
@@ -17,7 +44,7 @@ class TransLeaveService {
       Uri.parse(
           '${GlobalVariables.baseUrl}/TransLeaves?id=201810024&leave=AL"'),
       headers: <String, String>{
-        'Accept': 'application/json',
+        "Accept": "application/json",
       },
       //body: model.toJson(),
     );

@@ -7,8 +7,8 @@ import '../../../common/global_variables.dart';
 import 'package:http/http.dart' as http;
 
 class ViewLeaveSummaryAllService {
-  Future<Either<String, List<ViewLeaveSummaryAllModel>>> listLeaveSummary(
-      List<ViewLeaveSummaryAllModel> model) async {
+  Future<Either<String, List<ViewLeaveSummaryAllModel>>>
+      listLeaveSummary() async {
     // final tokenJwt = await AuthLocalDatasource().getToken();
 
     const noAbsen = NoAbsen;

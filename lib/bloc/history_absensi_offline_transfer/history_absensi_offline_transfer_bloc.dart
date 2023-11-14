@@ -17,7 +17,7 @@ class HistoryAbsensiOfflineTransferBloc extends Bloc<
     });
 
     on<AddHistoryAbsensiOfflineTransferEvent>((event, emit) async {
-      // TODO: implement event handler
+      // TODO: implement event handler, update ui loading dulu
       emit(HistoryAbsensiOfflineTransferLoading());
 
       final result = await service.addHistory(event.data);

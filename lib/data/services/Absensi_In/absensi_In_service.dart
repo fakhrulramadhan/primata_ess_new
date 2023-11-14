@@ -11,8 +11,11 @@ const _baseUrl = GlobalVariables.baseUrl;
 DateTime today = DateTime.now();
 
 class AbsensiInService {
+  //string (hasil output untuk left)
+  //list<>
+
   Future<Either<String, List<GetHistoryAbsensiTransfersModel>>>
-      getHistoryAbsensiIn(List<GetHistoryAbsensiTransfersModel> model) async {
+      getHistoryAbsensiIn() async {
     // final tokenJwt = await AuthLocalDatasource().getToken();
 
     const noAbsen = NoAbsen;
@@ -39,4 +42,52 @@ class AbsensiInService {
       return Left("${response.reasonPhrase}");
     }
   }
+
+  Future<List<GetHistoryAbsensiTransfersModel>> gotHistoryAbsensiIn() async {
+    const no = NoAbsen;
+    String apiUrl =
+        "${GlobalVariables.baseUrl}/HistoryAbsensiOfflineTransfers/$no";
+
+    var apiResult = await http
+        .get(Uri.parse(apiUrl), headers: {"Accept": "application/json"});
+
+    if (apiResult.statusCode == 200) {
+      List<GetHistoryAbsensiTransfersModel> hasil;
+      hasil = (json.decode(apiResult.body) as List)
+          .map((e) => GetHistoryAbsensiTransfersModel.fromJson(e))
+          .toList();
+      return hasil;
+    } else {
+      throw Exception(apiResult.reasonPhrase);
+    }
+  }
+
+  // Future<Either<String, List<GetHistoryAbsensiTransfersModel>>>
+  //     getHistoryAbsensiIn(List<GetHistoryAbsensiTransfersModel> model) async {
+  //   // final tokenJwt = await AuthLocalDatasource().getToken();
+
+  //   const noAbsen = NoAbsen;
+  //   // print(model.toRawJson());
+
+  //   final response = await http.post(
+  //     Uri.parse(
+  //         '${GlobalVariables.baseUrl}/HistoryAbsensiOfflineTransfers/$noAbsen'),
+  //     headers: <String, String>{
+  //       'Accept': 'application/json',
+  //     },
+  //     //body: model.toJson(),
+  //   );
+
+  //   if (response.statusCode == 200) {
+  //     List<GetHistoryAbsensiTransfersModel> hasil;
+  //     hasil = (json.decode(response.body) as List)
+  //         .map((e) => GetHistoryAbsensiTransfersModel.fromJson(e))
+  //         .toList();
+
+  //     return Right(hasil);
+  //     //return Right(GetHistoryAbsensiTransfersModel.fromRawJson(response.body));
+  //   } else {
+  //     return Left("${response.reasonPhrase}");
+  //   }
+  // }
 }

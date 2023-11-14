@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:primata_ess_new/bloc/get_history_absensi_in/get_history_absensi_in_bloc.dart';
 import 'package:primata_ess_new/bloc/get_view_master_employee/get_view_master_employee_bloc.dart';
 import 'package:primata_ess_new/bloc/history_absensi_offline_transfer/history_absensi_offline_transfer_bloc.dart';
 import 'package:primata_ess_new/bloc/login/login_bloc.dart';
+import 'package:primata_ess_new/data/services/Absensi_In/absensi_In_service.dart';
 import 'package:primata_ess_new/data/services/Absensi_In/history_absensi_offline_transfers_service.dart';
 import 'package:primata_ess_new/data/services/Login/login_remote_service.dart';
 import 'package:primata_ess_new/data/services/ViewMasterEmployee/view_master_employee_service.dart';
 import 'package:primata_ess_new/presentation/clock_in/add_clock_in.dart';
+import 'package:primata_ess_new/presentation/clock_in/list_clock_in.dart';
 import 'package:primata_ess_new/presentation/login/login_page.dart';
 
 void main() {
@@ -86,7 +89,11 @@ class MyApp extends StatelessWidget {
           create: (context) => HistoryAbsensiOfflineTransferBloc(
             HistoryAbsensiOfflineTransferService(),
           ),
-          child: const AddClockIn(),
+          child: const AddClockInPage(),
+        ),
+        BlocProvider(
+          create: (context) => GetHistoryAbsensiInBloc(AbsensiInService()),
+          child: const ListClockInPage(),
         )
       ],
       child: MaterialApp(

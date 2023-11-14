@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:primata_ess_new/bloc/get_view_master_employee/get_view_master_employee_bloc.dart';
-import 'package:primata_ess_new/presentation/clock_in/add_clock_in.dart';
+import 'package:primata_ess_new/presentation/clock_in/list_clock_in.dart';
 import 'package:primata_ess_new/presentation/home/home_page_menu.dart';
 
 class HomePage extends StatefulWidget {
@@ -174,8 +174,9 @@ class _HomePageState extends State<HomePage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => const AddClockIn(),
-                                  ),
+                                      builder: (context) =>
+                                          //const AddClockInPage(),
+                                          const ListClockInPage()),
                                 );
                               },
                               child: Container(

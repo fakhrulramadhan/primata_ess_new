@@ -10,14 +10,14 @@ import 'package:primata_ess_new/bloc/history_absensi_offline_transfer/history_ab
 import 'package:primata_ess_new/data/model/Absensi_In_Out/history_absensi_offline_transfers_model.dart';
 import 'package:primata_ess_new/presentation/home/home_page.dart';
 
-class AddClockIn extends StatefulWidget {
-  const AddClockIn({super.key});
+class AddClockInPage extends StatefulWidget {
+  const AddClockInPage({super.key});
 
   @override
-  State<AddClockIn> createState() => _AddClockInState();
+  State<AddClockInPage> createState() => _AddClockInPageState();
 }
 
-class _AddClockInState extends State<AddClockIn> {
+class _AddClockInPageState extends State<AddClockInPage> {
   Future<HistoryAbsensiOfflineTransferModel>? HistoryAbsenOfflineTransfer;
   //LocationService locationService = LocationService();
 
