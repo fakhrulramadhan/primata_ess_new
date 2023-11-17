@@ -54,8 +54,14 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const HomePageMenu(),
+      drawerScrimColor: Colors.white,
       appBar: AppBar(
-        title: const Text("Primata ESS"),
+        title: const Text(
+          "Primata ESS",
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
         actions: const [],
         backgroundColor: Colors.teal,
       ),
