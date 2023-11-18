@@ -87,20 +87,6 @@ class _LeaveRequestPageState extends State<LeaveRequestPage> {
                           ),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(16))),
-                      onTap: () async {
-                        DateTime? pickEndDate = await showDatePicker(
-                            context: context,
-                            initialDate: DateTime.now(),
-                            firstDate: DateTime(1900),
-                            lastDate: DateTime(2100));
-
-                        if (pickEndDate != null) {
-                          setState(() {
-                            _dateEnd.text =
-                                DateFormat('yyy-MM-dd').format(pickEndDate);
-                          });
-                        }
-                      },
                     ),
                     const SizedBox(
                       height: 12.0,
@@ -178,7 +164,7 @@ class _LeaveRequestPageState extends State<LeaveRequestPage> {
                       style: const TextStyle(
                           color: Colors.black, fontWeight: FontWeight.w400),
                       decoration: InputDecoration(
-                          labelText: "Date",
+                          labelText: _dateEnd.text,
                           contentPadding: const EdgeInsets.symmetric(
                               vertical: 10, horizontal: 10),
                           prefixIcon: const Icon(
@@ -187,7 +173,25 @@ class _LeaveRequestPageState extends State<LeaveRequestPage> {
                           ),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(16))),
-                      onChanged: (value) {},
+                      onChanged: (value) {
+                        value = _dateEnd.text;
+
+                        setState(() {});
+                      },
+                      onTap: () async {
+                        DateTime? pickEndDate = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime(1900),
+                            lastDate: DateTime(2100));
+
+                        if (pickEndDate != null) {
+                          setState(() {
+                            _dateEnd.text =
+                                DateFormat('yyy-MM-dd').format(pickEndDate);
+                          });
+                        }
+                      },
                     ),
                     const SizedBox(
                       height: 12.0,
@@ -395,22 +399,15 @@ class _LeaveRequestPageState extends State<LeaveRequestPage> {
                                     const SizedBox(
                                       height: 12.0,
                                     ),
-                                    Card(
-                                      color: Colors.teal,
-                                      elevation: 5,
-                                      child: SizedBox(
-                                        height: 50,
-                                        child: InkWell(
-                                          splashColor: Colors.white,
-                                          onTap: () async {},
-                                          child: const Text(
-                                            "Save",
-                                            style: TextStyle(
-                                              fontSize: 20.0,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        ),
+                                    ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.teal,
+                                          minimumSize: const Size(150, 80)),
+                                      onPressed: () {},
+                                      child: const Text(
+                                        "Save",
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 17),
                                       ),
                                     ),
                                   ],

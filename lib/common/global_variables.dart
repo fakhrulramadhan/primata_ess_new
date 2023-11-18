@@ -1,5 +1,6 @@
 class GlobalVariables {
-  static const baseUrl = 'http://18.140.93.221:5100/WSQdayDemo/api';
+  //static const baseUrl = 'http://18.140.93.221:5100/WSQdayDemo/api';
+  static const baseUrl = 'http://111.68.116.116:5000/api';
 
   static const List<String> bannerImages = [
     'https://storage.googleapis.com/astro-site/home/new-user.webp',

@@ -206,8 +206,183 @@ class _ProfilePageState extends State<ProfilePage> {
                                   ),
                                 ),
                               ),
+                            ),
+                            Container(
+                              child: ListTile(
+                                leading: const Icon(
+                                  Icons.work,
+                                  size: 24.0,
+                                ),
+                                title: const Text(
+                                  "Position: ",
+                                  style: TextStyle(
+                                    fontSize: 15.0,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                subtitle: Text(
+                                  state.data.position.toString(),
+                                  style: const TextStyle(
+                                    fontSize: 15.0,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              child: ListTile(
+                                leading: const Icon(
+                                  Icons.location_city,
+                                  size: 24.0,
+                                ),
+                                title: const Text(
+                                  "Work Unit:",
+                                  style: TextStyle(
+                                    fontSize: 15.0,
+                                  ),
+                                ),
+                                subtitle: Text(
+                                  state.data.unitKerja.toString(),
+                                  style: const TextStyle(
+                                    fontSize: 15.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
                             )
                           ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, right: 5, left: 5),
+                  child: Container(
+                    margin: const EdgeInsets.all(20),
+                    height: 310,
+                    width: 370,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.black.withOpacity(0.1),
+                              offset: const Offset(0.0, 3.0),
+                              blurRadius: 15)
+                        ]),
+                    child: Container(
+                      padding:
+                          const EdgeInsets.only(top: 10, right: 5, left: 5),
+                      child: Container(
+                        margin: const EdgeInsets.all(20),
+                        height: 310,
+                        width: 370,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(8),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  offset: const Offset(0.0, 3.0),
+                                  blurRadius: 15)
+                            ]),
+                        child: Container(
+                          padding: const EdgeInsets.all(10),
+                          child: SingleChildScrollView(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  child: ListTile(
+                                    leading: const Icon(
+                                      Icons.category,
+                                      size: 24.0,
+                                    ),
+                                    title: const Text(
+                                      "Category",
+                                      style: TextStyle(
+                                        fontSize: 15.0,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    subtitle: Text(
+                                      state.data.category.toString(),
+                                      style: const TextStyle(
+                                        fontSize: 15.0,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  child: ListTile(
+                                    leading: const Icon(
+                                      Icons.calendar_month,
+                                      size: 24.0,
+                                    ),
+                                    title: const Text(
+                                      "Level / Grade:",
+                                      style: TextStyle(
+                                        fontSize: 15.0,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    subtitle: Text(
+                                      state.data.levelId.toString(),
+                                      style: const TextStyle(
+                                          fontSize: 15.0,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  child: ListTile(
+                                    leading: const Icon(
+                                      Icons.calendar_month,
+                                      size: 24.0,
+                                    ),
+                                    title: const Text(
+                                      "Date Of Birth",
+                                      style: TextStyle(
+                                        fontSize: 15.0,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    subtitle: Text(
+                                      state.data.dateOfBirth.toString(),
+                                      style: const TextStyle(
+                                        fontSize: 15.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  child: ListTile(
+                                    leading: const Icon(
+                                      Icons.calendar_month,
+                                      size: 24.0,
+                                    ),
+                                    title: const Text(
+                                      "Date Retire:",
+                                      style: TextStyle(
+                                        fontSize: 15.0,
+                                      ),
+                                    ),
+                                    subtitle: Text(
+                                      state.data.dateRetire.toString(),
+                                      style: const TextStyle(
+                                        fontSize: 15.0,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ),
