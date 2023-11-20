@@ -135,8 +135,17 @@ class _ListClockInPageState extends State<ListClockInPage> {
           )
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
+      floatingActionButton: FloatingActionButton.extended(
+        icon: const Icon(
+          Icons.add,
+          size: 24.0,
+        ),
+        label: const Text(
+          "Tambah",
+          style: TextStyle(
+            fontSize: 15.0,
+          ),
+        ),
         onPressed: () {
           //
           Navigator.push(

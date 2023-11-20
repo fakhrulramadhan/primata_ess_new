@@ -11,16 +11,17 @@ const _baseUrl = GlobalVariables.baseUrl;
 DateTime today = DateTime.now();
 
 class ViewTransJadwalShiftWebScheduleService {
-  Future<Either<String, List<ViewTransJadwalShiftWebModel>>> getListSchedule(
-      List<ViewTransJadwalShiftWebModel> model) async {
+  Future<Either<String, List<ViewTransJadwalShiftWebModel>>>
+      getListSchedule() async {
     // final tokenJwt = await AuthLocalDatasource().getToken();
 
     const noAbsen = NoAbsen;
     // print(model.toRawJson());
 
+    //viewTransJadwalShiftWeb?id=201810003&Tglawal=2022-01-05&tglakhir=2022-01-11
     final response = await http.post(
       Uri.parse(
-          '${GlobalVariables.baseUrl}/viewTransJadwalShiftWeb?id=201810003&Tglawal=2022-01-05&tglakhir=2022-01-11'),
+          '${GlobalVariables.baseUrl}/ViewTransJadwalShiftWeb?Tglawal=2021-10-22&tglakhir=2022-10-23'),
       headers: <String, String>{
         'Accept': 'application/json',
       },

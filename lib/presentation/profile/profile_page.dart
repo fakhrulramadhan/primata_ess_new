@@ -64,6 +64,16 @@ class _ProfilePageState extends State<ProfilePage> {
           }
 
           if (state is GetViewMasterEmployeeProfileLoaded) {
+            if (state.data == null) {
+              return const Center(
+                child: Text(
+                  "Data Server Error",
+                  style: TextStyle(
+                    fontSize: 15.0,
+                  ),
+                ),
+              );
+            }
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
