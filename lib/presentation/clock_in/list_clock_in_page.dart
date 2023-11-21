@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:primata_ess_new/bloc/get_history_absensi_in/get_history_absensi_in_bloc.dart';
 import 'package:primata_ess_new/data/model/Absensi_In_Out/get_history_absensi_offline_transfers_model.dart';
-import 'package:primata_ess_new/presentation/clock_in/add_clock_in.dart';
+import 'package:primata_ess_new/presentation/clock_in/add_clock_in_page.dart';
 
 class ListClockInPage extends StatefulWidget {
   const ListClockInPage({super.key});

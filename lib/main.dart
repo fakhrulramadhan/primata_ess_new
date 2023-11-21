@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:primata_ess_new/bloc/get_history_absensi_in/get_history_absensi_in_bloc.dart';
 import 'package:primata_ess_new/bloc/get_leave_detail/get_leave_detail_bloc.dart';
+import 'package:primata_ess_new/bloc/get_list_attendance/get_list_attendance_bloc.dart';
 import 'package:primata_ess_new/bloc/get_list_leave_summary/get_list_leave_summary_bloc.dart';
 import 'package:primata_ess_new/bloc/get_view_master_employee/get_view_master_employee_bloc.dart';
 import 'package:primata_ess_new/bloc/history_absensi_offline_transfer/history_absensi_offline_transfer_bloc.dart';
@@ -12,8 +13,9 @@ import 'package:primata_ess_new/data/services/Leave/trans_leave_service.dart';
 import 'package:primata_ess_new/data/services/Leave/view_leave_summary_all_service.dart';
 import 'package:primata_ess_new/data/services/Login/login_remote_service.dart';
 import 'package:primata_ess_new/data/services/ViewMasterEmployee/view_master_employee_service.dart';
-import 'package:primata_ess_new/presentation/clock_in/add_clock_in.dart';
-import 'package:primata_ess_new/presentation/clock_in/list_clock_in.dart';
+import 'package:primata_ess_new/data/services/ViewTransJadwalShiftWeb/view_trans_jadwal_shift_web_attendance.dart';
+import 'package:primata_ess_new/presentation/clock_in/add_clock_in_page.dart';
+import 'package:primata_ess_new/presentation/clock_in/list_clock_in_page.dart';
 import 'package:primata_ess_new/presentation/home/home_page.dart';
 import 'package:primata_ess_new/presentation/leave/leave_detail_page.dart';
 import 'package:primata_ess_new/presentation/leave/leave_page.dart';
@@ -110,6 +112,11 @@ class MyApp extends StatelessWidget {
               GetListLeaveSummaryBloc(ViewLeaveSummaryAllService()),
           child: const LeavePage(),
         ),
+        BlocProvider(
+          create: (context) =>
+              GetListAttendanceBloc(ViewTransJadwalShiftWebAttendanceService()),
+          child: Container(),
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

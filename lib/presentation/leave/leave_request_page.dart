@@ -62,7 +62,8 @@ class _LeaveRequestPageState extends State<LeaveRequestPage> {
                     children: [
                       TextFormField(
                         controller: empNoController,
-                        autovalidateMode: AutovalidateMode.always,
+                        //autovalidateMode: AutovalidateMode.always,
+                        autovalidateMode: AutovalidateMode.disabled,
                         keyboardType: TextInputType.emailAddress,
                         textInputAction: TextInputAction.done,
                         textAlign: TextAlign.left,
@@ -95,7 +96,8 @@ class _LeaveRequestPageState extends State<LeaveRequestPage> {
                       ),
                       TextFormField(
                         controller: nameController,
-                        autovalidateMode: AutovalidateMode.always,
+                        //autovalidateMode: AutovalidateMode.always,
+                        autovalidateMode: AutovalidateMode.disabled,
                         keyboardType: TextInputType.text,
                         textInputAction: TextInputAction.done,
                         textAlign: TextAlign.left,
@@ -125,7 +127,8 @@ class _LeaveRequestPageState extends State<LeaveRequestPage> {
                         height: 12.0,
                       ),
                       TextFormField(
-                        autovalidateMode: AutovalidateMode.always,
+                        //autovalidateMode: AutovalidateMode.always,
+                        autovalidateMode: AutovalidateMode.disabled,
                         controller: departementController,
                         enabled: true,
                         keyboardType: TextInputType.text,
@@ -159,7 +162,7 @@ class _LeaveRequestPageState extends State<LeaveRequestPage> {
                       ),
                       TextFormField(
                         controller: titleController,
-                        autovalidateMode: AutovalidateMode.always,
+                        autovalidateMode: AutovalidateMode.disabled,
                         enabled: true,
                         textAlign: TextAlign.left,
                         style: const TextStyle(
@@ -187,7 +190,7 @@ class _LeaveRequestPageState extends State<LeaveRequestPage> {
                         height: 12.0,
                       ),
                       TextFormField(
-                        autovalidateMode: AutovalidateMode.always,
+                        autovalidateMode: AutovalidateMode.disabled,
                         controller: leaveNoController,
                         enabled: true,
                         textAlign: TextAlign.left,
@@ -216,7 +219,7 @@ class _LeaveRequestPageState extends State<LeaveRequestPage> {
                         height: 12.0,
                       ),
                       TextFormField(
-                        autovalidateMode: AutovalidateMode.always,
+                        autovalidateMode: AutovalidateMode.disabled,
                         enabled: true,
                         controller: _dateEndController,
                         textAlign: TextAlign.left,
@@ -262,7 +265,7 @@ class _LeaveRequestPageState extends State<LeaveRequestPage> {
                         height: 12.0,
                       ),
                       TextFormField(
-                        autovalidateMode: AutovalidateMode.always,
+                        autovalidateMode: AutovalidateMode.disabled,
                         controller: statusController,
                         enabled: true,
                         textAlign: TextAlign.left,
@@ -285,7 +288,7 @@ class _LeaveRequestPageState extends State<LeaveRequestPage> {
                         height: 12.0,
                       ),
                       TextFormField(
-                        autovalidateMode: AutovalidateMode.always,
+                        autovalidateMode: AutovalidateMode.disabled,
                         controller: progressController,
                         enabled: true,
                         textAlign: TextAlign.left,
@@ -344,7 +347,7 @@ class _LeaveRequestPageState extends State<LeaveRequestPage> {
                                     children: [
                                       TextFormField(
                                         autovalidateMode:
-                                            AutovalidateMode.always,
+                                            AutovalidateMode.disabled,
                                         keyboardType: TextInputType.text,
                                         textInputAction: TextInputAction.done,
                                         controller: _dateStartController,
@@ -395,7 +398,7 @@ class _LeaveRequestPageState extends State<LeaveRequestPage> {
                                       ),
                                       TextFormField(
                                         autovalidateMode:
-                                            AutovalidateMode.always,
+                                            AutovalidateMode.disabled,
                                         enabled: true,
                                         controller: _dateEndController,
                                         keyboardType:
@@ -446,7 +449,7 @@ class _LeaveRequestPageState extends State<LeaveRequestPage> {
                                       ),
                                       TextFormField(
                                         autovalidateMode:
-                                            AutovalidateMode.always,
+                                            AutovalidateMode.disabled,
                                         controller: statusController,
                                         keyboardType: TextInputType.text,
                                         textInputAction: TextInputAction.done,
@@ -481,7 +484,7 @@ class _LeaveRequestPageState extends State<LeaveRequestPage> {
                                       ),
                                       TextFormField(
                                         autovalidateMode:
-                                            AutovalidateMode.always,
+                                            AutovalidateMode.disabled,
                                         controller: qtyController,
                                         enabled: true,
                                         textAlign: TextAlign.left,

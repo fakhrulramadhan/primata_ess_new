@@ -11,8 +11,8 @@ const _baseUrl = GlobalVariables.baseUrl;
 DateTime today = DateTime.now();
 
 class ViewTransJadwalShiftWebAttendanceService {
-  Future<Either<String, List<ViewTransJadwalShiftWebModel>>> getListAttendance(
-      List<ViewTransJadwalShiftWebModel> model) async {
+  Future<Either<String, List<ViewTransJadwalShiftWebModel>>>
+      getListAttendance() async {
     // final tokenJwt = await AuthLocalDatasource().getToken();
 
     const noAbsen = NoAbsen;

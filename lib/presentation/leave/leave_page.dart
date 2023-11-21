@@ -63,157 +63,171 @@ class _LeavePageState extends State<LeavePage>
       ),
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
-        child: BlocBuilder<GetListLeaveSummaryBloc, GetListLeaveSummaryState>(
-          builder: (context, state) {
-            if (state is GetListLeaveSummaryStateError) {
-              return const Center(
-                child: Text("Data Server Error"),
-              );
-            }
-
-            if (state is GetListLeaveSummaryStateLoading) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-
-            if (state is GetListLeaveSummaryStateLoaded) {
-              if (state.data == null) {
+        child: Container(
+          width: double.infinity,
+          height: 470,
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  offset: const Offset(0.0, 3.0),
+                  blurRadius: 15,
+                )
+              ]),
+          child: BlocBuilder<GetListLeaveSummaryBloc, GetListLeaveSummaryState>(
+            builder: (context, state) {
+              if (state is GetListLeaveSummaryStateError) {
                 return const Center(
-                  child: Text("Data Empty"),
+                  child: Text("Data Server Error"),
                 );
               }
 
-              return DataTable(
-                  columnSpacing: 30,
-                  columns: [
-                    DataColumn(
-                        label: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.15,
-                          child: const Text(
-                            "Leave Type",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w900,
-                              color: Colors.blue,
+              if (state is GetListLeaveSummaryStateLoading) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+
+              if (state is GetListLeaveSummaryStateLoaded) {
+                if (state.data == null) {
+                  return const Center(
+                    child: Text("Data Empty"),
+                  );
+                }
+
+                return DataTable(
+                    columnSpacing: 30,
+                    columns: [
+                      DataColumn(
+                          label: SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.15,
+                            child: const Text(
+                              "Leave Type",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w900,
+                                color: Colors.blue,
+                              ),
                             ),
                           ),
-                        ),
-                        numeric: false),
-                    DataColumn(
-                        label: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.15,
-                          child: const Text(
-                            "Entitlement Last Year",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w900,
-                              color: Colors.blue,
+                          numeric: false),
+                      DataColumn(
+                          label: SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.15,
+                            child: const Text(
+                              "Entitlement Last Year",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w900,
+                                color: Colors.blue,
+                              ),
                             ),
                           ),
-                        ),
-                        numeric: false),
-                    DataColumn(
-                        label: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.15,
-                          child: const Text(
-                            "Taken Last Year",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w900,
-                              color: Colors.blue,
+                          numeric: false),
+                      DataColumn(
+                          label: SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.15,
+                            child: const Text(
+                              "Taken Last Year",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w900,
+                                color: Colors.blue,
+                              ),
                             ),
                           ),
-                        ),
-                        numeric: false),
-                    DataColumn(
-                        label: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.15,
-                          child: const Text(
-                            "Taken Last Year",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w900,
-                              color: Colors.blue,
+                          numeric: false),
+                      DataColumn(
+                          label: SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.15,
+                            child: const Text(
+                              "Taken Last Year",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w900,
+                                color: Colors.blue,
+                              ),
                             ),
                           ),
-                        ),
-                        numeric: false),
-                    DataColumn(
-                        label: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.15,
-                          child: const Text(
-                            "Balance Last Year",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w900,
-                              color: Colors.blue,
+                          numeric: false),
+                      DataColumn(
+                          label: SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.15,
+                            child: const Text(
+                              "Balance Last Year",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w900,
+                                color: Colors.blue,
+                              ),
                             ),
                           ),
-                        ),
-                        numeric: false),
-                    DataColumn(
-                        label: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.15,
-                          child: const Text(
-                            "Entitlement ",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              color: Colors.blue,
+                          numeric: false),
+                      DataColumn(
+                          label: SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.15,
+                            child: const Text(
+                              "Entitlement ",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                color: Colors.blue,
+                              ),
                             ),
                           ),
-                        ),
-                        numeric: false),
-                    DataColumn(
-                        label: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.15,
-                          child: const Text(
-                            "Taken",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w900,
-                              color: Colors.blue,
+                          numeric: false),
+                      DataColumn(
+                          label: SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.15,
+                            child: const Text(
+                              "Taken",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w900,
+                                color: Colors.blue,
+                              ),
                             ),
                           ),
-                        ),
-                        numeric: false),
-                    DataColumn(
-                        label: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.15,
-                          child: const Text(
-                            "Remaining",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w900,
-                              color: Colors.blue,
+                          numeric: false),
+                      DataColumn(
+                          label: SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.15,
+                            child: const Text(
+                              "Remaining",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w900,
+                                color: Colors.blue,
+                              ),
                             ),
                           ),
+                          numeric: false)
+                    ],
+                    rows: List.generate(leaveList.length, (index) {
+                      return DataRow(cells: <DataCell>[
+                        DataCell(
+                          Text("${state.data[index].initialLeave}"),
                         ),
-                        numeric: false)
-                  ],
-                  rows: List.generate(leaveList.length, (index) {
-                    return DataRow(cells: <DataCell>[
-                      DataCell(
-                        Text("${state.data[index].initialLeave}"),
-                      ),
-                      DataCell(
-                        Text("${state.data[index].lyentitlement}"),
-                      ),
-                      DataCell(
-                        Text("${state.data[index].lytaken}"),
-                      ),
-                      DataCell(
-                        Text("${state.data[index].balance}"),
-                      ),
-                      DataCell(
-                        Text("${state.data[index].tyentitlement}"),
-                      ),
-                      DataCell(
-                        Text("${state.data[index].tytaken}"),
-                      ),
-                      DataCell(
-                        Text("${state.data[index].remaining}"),
-                      )
-                    ]);
-                  }));
-            }
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          },
+                        DataCell(
+                          Text("${state.data[index].lyentitlement}"),
+                        ),
+                        DataCell(
+                          Text("${state.data[index].lytaken}"),
+                        ),
+                        DataCell(
+                          Text("${state.data[index].balance}"),
+                        ),
+                        DataCell(
+                          Text("${state.data[index].tyentitlement}"),
+                        ),
+                        DataCell(
+                          Text("${state.data[index].tytaken}"),
+                        ),
+                        DataCell(
+                          Text("${state.data[index].remaining}"),
+                        )
+                      ]);
+                    }));
+              }
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            },
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(

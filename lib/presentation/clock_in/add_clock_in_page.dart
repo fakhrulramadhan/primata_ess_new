@@ -61,7 +61,7 @@ class _AddClockInPageState extends State<AddClockInPage> {
     await Geolocator.checkPermission();
     await Geolocator.requestPermission();
     Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.medium);
+        desiredAccuracy: LocationAccuracy.high);
     print(position);
     return position;
   }
