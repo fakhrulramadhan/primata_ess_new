@@ -19,7 +19,7 @@ class ViewTransJadwalShiftWebScheduleService {
     // print(model.toRawJson());
 
     //viewTransJadwalShiftWeb?id=201810003&Tglawal=2022-01-05&tglakhir=2022-01-11
-    final response = await http.post(
+    final response = await http.get(
       Uri.parse(
           '${GlobalVariables.baseUrl}/ViewTransJadwalShiftWeb?Tglawal=2021-10-22&tglakhir=2022-10-23'),
       headers: <String, String>{
