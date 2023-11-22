@@ -5,6 +5,7 @@ import 'package:primata_ess_new/bloc/get_leave_detail/get_leave_detail_bloc.dart
 import 'package:primata_ess_new/bloc/get_list_attendance/get_list_attendance_bloc.dart';
 import 'package:primata_ess_new/bloc/get_list_leave_summary/get_list_leave_summary_bloc.dart';
 import 'package:primata_ess_new/bloc/get_view_master_employee/get_view_master_employee_bloc.dart';
+import 'package:primata_ess_new/bloc/get_view_master_employee_profile/get_view_master_employee_profile_bloc.dart';
 import 'package:primata_ess_new/bloc/history_absensi_offline_transfer/history_absensi_offline_transfer_bloc.dart';
 import 'package:primata_ess_new/bloc/login/login_bloc.dart';
 import 'package:primata_ess_new/data/services/Absensi_In/absensi_In_service.dart';
@@ -12,14 +13,17 @@ import 'package:primata_ess_new/data/services/Absensi_In/history_absensi_offline
 import 'package:primata_ess_new/data/services/Leave/trans_leave_service.dart';
 import 'package:primata_ess_new/data/services/Leave/view_leave_summary_all_service.dart';
 import 'package:primata_ess_new/data/services/Login/login_remote_service.dart';
+import 'package:primata_ess_new/data/services/ViewMasterEmployee/view_master_employee_profile_service.dart';
 import 'package:primata_ess_new/data/services/ViewMasterEmployee/view_master_employee_service.dart';
 import 'package:primata_ess_new/data/services/ViewTransJadwalShiftWeb/view_trans_jadwal_shift_web_attendance.dart';
+import 'package:primata_ess_new/data/services/ViewTransJadwalShiftWeb/view_trans_jadwal_shift_web_schedule_service.dart';
 import 'package:primata_ess_new/presentation/clock_in/add_clock_in_page.dart';
 import 'package:primata_ess_new/presentation/clock_in/list_clock_in_page.dart';
 import 'package:primata_ess_new/presentation/home/home_page.dart';
 import 'package:primata_ess_new/presentation/leave/leave_detail_page.dart';
 import 'package:primata_ess_new/presentation/leave/leave_page.dart';
 import 'package:primata_ess_new/presentation/login/login_page.dart';
+import '../../bloc/get_view_trans_jadwal_shift/get_view_trans_jadwal_shift_bloc.dart';
 
 void main() {
   BlocOverrides.runZoned(
@@ -115,6 +119,16 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) =>
               GetListAttendanceBloc(ViewTransJadwalShiftWebAttendanceService()),
+          child: Container(),
+        ),
+        BlocProvider(
+          create: (context) => GetViewTransJadwalShiftBloc(
+              ViewTransJadwalShiftWebScheduleService()),
+          child: Container(),
+        ),
+        BlocProvider(
+          create: (context) => GetViewMasterEmployeeProfileBloc(
+              ViewMasterEmployeeProfileService()),
           child: Container(),
         )
       ],

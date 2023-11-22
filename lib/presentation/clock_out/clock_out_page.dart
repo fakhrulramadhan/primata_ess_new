@@ -188,7 +188,7 @@ class _ClockoutPageState extends State<ClockoutPage> {
                         style: const TextStyle(
                             color: Colors.black, fontWeight: FontWeight.w400),
                         decoration: InputDecoration(
-                            labelText: "${position0!.latitude}",
+                            labelText: "${position0?.latitude}",
                             prefixIcon: const Icon(
                               Icons.map,
                               size: 24.0,

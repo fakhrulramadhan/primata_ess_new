@@ -227,17 +227,19 @@ class _HomePageState extends State<HomePage> {
                           ),
                           SizedBox(
                             width: 100.0,
-                            height: 120,
+                            height: 100.0,
                             child: GestureDetector(
                               onTap: () async {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => const ClockoutPage(),
-                                  ),
+                                      builder: (context) =>
+                                          //const AddClockInPage(),
+                                          const ClockoutPage()),
                                 );
                               },
                               child: Container(
+                                height: 120,
                                 decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius: const BorderRadius.all(
@@ -256,7 +258,7 @@ class _HomePageState extends State<HomePage> {
                                       Image.asset('assets/images/AbsenOut.png',
                                           width: 50.0),
                                       const SizedBox(
-                                        height: 10.0,
+                                        height: 8.0,
                                       ),
                                       const Text(
                                         "Clock Out",
