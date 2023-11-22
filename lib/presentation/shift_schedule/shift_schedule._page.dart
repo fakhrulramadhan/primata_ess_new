@@ -92,50 +92,103 @@ class _ShiftSchedulePageState extends State<ShiftSchedulePage> {
                                 );
                               }
 
-                              return DataTable(
-                                  columns: const [
-                                    DataColumn(
-                                        label: Text(
-                                          "Date",
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w900,
-                                            color: Colors.blue,
-                                          ),
-                                        ),
-                                        numeric: false),
-                                    DataColumn(
-                                        label: Text(
-                                          "SHIFT",
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w900,
-                                            color: Colors.blue,
-                                          ),
-                                        ),
-                                        numeric: false)
-                                  ],
-                                  rows: List.generate(shift.length, (index) {
-                                    return DataRow(cells: <DataCell>[
-                                      DataCell(Column(
+                              //grid2
+                              return GridView.builder(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 16),
+                                gridDelegate:
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                  childAspectRatio: 0.65,
+                                  crossAxisCount: 2,
+                                  mainAxisSpacing: 8,
+                                  crossAxisSpacing: 8,
+                                ),
+                                itemCount: state.data.length,
+                                itemBuilder: (context, index) {
+                                  final ViewTransJadwalShiftWebModel
+                                      transshift = state.data[index];
+
+                                  return InkWell(
+                                    child: Card(
+                                      elevation: 2,
+                                      shadowColor: const Color(0xffEE4D2D),
+                                      color: Colors.white,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
-                                          const Spacer(
-                                            flex: 1,
+                                          Text(
+                                            "${transshift.noMesin}",
+                                            style: const TextStyle(
+                                              color: Color(0xffEE4D2D),
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w600,
+                                            ),
                                           ),
-                                          Text("${state.data[index].tanggal}"),
-                                          const Spacer(
-                                            flex: 1,
+                                          const SizedBox(
+                                            height: 4,
                                           ),
-                                          Text(formatHari.format(DateTime.parse(
-                                              '${state.data[index].tanggal}'))),
-                                          const Spacer(
-                                            flex: 1,
-                                          )
+                                          Text(
+                                            "${transshift.namaKaryawan}",
+                                            style: const TextStyle(
+                                              color: Color(0xffEE4D2D),
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 4.0,
+                                          ),
+                                          Text(
+                                            "${transshift.jmlJamKerja}",
+                                            style: const TextStyle(
+                                              color: Color(0xffEE4D2D),
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 4.0,
+                                          ),
+                                          Text(
+                                            "${transshift.jabatan}",
+                                            style: const TextStyle(
+                                              fontSize: 20.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 4,
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 8.0),
+                                            child: Text(
+                                              "${transshift.pulang}",
+                                              maxLines: 2,
+                                              textAlign: TextAlign.center,
+                                              style: const TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 8,
+                                          ),
+                                          const Divider(
+                                            height: 2,
+                                            color: Colors.grey,
+                                          ),
                                         ],
-                                      )),
-                                      DataCell(
-                                        Text("${state.data[index].noShift}"),
-                                      )
-                                    ]);
-                                  }));
+                                      ),
+                                    ),
+                                  );
+                                },
+                              );
                             }
                             return const Center(
                               child: CircularProgressIndicator(),

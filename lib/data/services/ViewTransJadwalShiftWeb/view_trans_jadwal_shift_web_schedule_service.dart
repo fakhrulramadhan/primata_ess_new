@@ -28,11 +28,16 @@ class ViewTransJadwalShiftWebScheduleService {
       //body: model.toJson(),
     );
 
+    //print(response.body);
+
     if (response.statusCode == 200) {
       List<ViewTransJadwalShiftWebModel> hasil;
       hasil = (json.decode(response.body) as List)
           .map((e) => ViewTransJadwalShiftWebModel.fromJson(e))
           .toList();
+
+      print("ini hasil");
+      print(hasil);
 
       return Right(hasil);
       //return Right(ViewMasterEmployeeListModel.fromRawJson(response.body));
