@@ -302,6 +302,10 @@ class _AddClockInPageState extends State<AddClockInPage> {
                               MaterialPageRoute(
                                   builder: (context) => const HomePage()),
                             );
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                              content: Text("Sukses Clock In"),
+                            ));
                           }
                         },
                         builder: (context, state) {

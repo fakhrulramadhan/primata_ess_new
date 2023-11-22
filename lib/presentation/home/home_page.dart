@@ -3,8 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:primata_ess_new/bloc/get_view_master_employee/get_view_master_employee_bloc.dart';
 import 'package:primata_ess_new/presentation/attendance/attendance_page.dart';
 import 'package:primata_ess_new/presentation/clock_in/list_clock_in_page.dart';
+import 'package:primata_ess_new/presentation/clock_out/clock_out_page.dart';
 import 'package:primata_ess_new/presentation/home/home_page_menu.dart';
 import 'package:primata_ess_new/presentation/leave/leave_page.dart';
+import 'package:primata_ess_new/presentation/profile/profile_page.dart';
 import 'package:primata_ess_new/presentation/shift_schedule/shift_schedule._page.dart';
 
 class HomePage extends StatefulWidget {
@@ -114,11 +116,11 @@ class _HomePageState extends State<HomePage> {
                                   child: GestureDetector(
                                     onTap: () {
                                       Navigator.of(context).pop();
-                                      // Navigator.of(context)
-                                      //     .push(new MaterialPageRoute(
-                                      //   builder: (BuildContext context) =>
-                                      //       new ProfilePage(),
-                                      // ));
+                                      Navigator.of(context)
+                                          .push(MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            const ProfilePage(),
+                                      ));
                                     },
                                     child: Image.asset(
                                       "assets/images/avatar.png",
@@ -228,12 +230,12 @@ class _HomePageState extends State<HomePage> {
                             height: 120,
                             child: GestureDetector(
                               onTap: () async {
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //     builder: (context) => AddClockOut(),
-                                //   ),
-                                // );
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const ClockoutPage(),
+                                  ),
+                                );
                               },
                               child: Container(
                                 decoration: BoxDecoration(

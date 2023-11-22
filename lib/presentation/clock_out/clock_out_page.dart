@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'dart:async';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:primata_ess_new/bloc/history_absensi_offline_transfer/history_absensi_offline_transfer_bloc.dart';
 import '../../data/model/Absensi_In_Out/history_absensi_offline_transfers_model.dart';
 
 class ClockoutPage extends StatefulWidget {
@@ -186,15 +188,133 @@ class _ClockoutPageState extends State<ClockoutPage> {
                         style: const TextStyle(
                             color: Colors.black, fontWeight: FontWeight.w400),
                         decoration: InputDecoration(
-                          labelText: "${position0!.latitude}",
-                          prefixIcon: const Icon(
-                            Icons.map,
-                            size: 24.0,
-                          ),
-                        ),
+                            labelText: "${position0!.latitude}",
+                            prefixIcon: const Icon(
+                              Icons.map,
+                              size: 24.0,
+                            ),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16))),
+                        onTap: () {},
+                        onChanged: (value) {
+                          latitudeController.text = "${position0?.latitude}";
+                        },
+                        validator: (val) {
+                          return null;
+                        },
+                      ),
+                      const SizedBox(
+                        height: 10.0,
+                      ),
+                      TextFormField(
+                        controller: longitudeController,
+                        enabled: false,
+                        textAlign: TextAlign.left,
+                        style: const TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.w400),
+                        decoration: InputDecoration(
+                            labelText: "${position0?.longitude}",
+                            prefixIcon: const Icon(
+                              Icons.map,
+                              size: 24.0,
+                            ),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(16))),
+                        onTap: () {},
+                        onChanged: (value) {
+                          longitudeController.text = "${position0?.longitude}";
+                        },
+                        validator: (val) {
+                          return null;
+                        },
+                      ),
+                      //bloc consumer taruh di tombol simpan
+                      BlocConsumer<HistoryAbsensiOfflineTransferBloc,
+                          HistoryAbsensiOfflineTransferState>(
+                        listener: (context, state) {
+                          // TODO: implement listener
+                          if (state is HistoryAbsensiOfflineTransferError) {
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                              content: Text("Maaf terjadi kesalahan"),
+                            ));
+                          }
+
+                          if (state is HistoryAbsensiOfflineTransferLoaded) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Container()),
+                            );
+
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                              content: Text("Sukses Clock Out"),
+                            ));
+                          }
+                        },
+                        builder: (context, state) {
+                          if (state is HistoryAbsensiOfflineTransferLoading) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+
+                          return Card(
+                            color: Colors.teal,
+                            elevation: 5,
+                            child: SizedBox(
+                              height: 50.0,
+                              child: InkWell(
+                                splashColor: Colors.white,
+                                onTap: () async {
+                                  if (clockOutFormKey.currentState!
+                                      .validate()) {
+                                    final model =
+                                        HistoryAbsensiOfflineTransferModel(
+                                            autoNo: 1,
+                                            terminalId: 2,
+                                            pinid: "1",
+                                            tanggal: "2022-03-10",
+                                            verifyResult: 1,
+                                            functionKey: 1,
+                                            recover: false,
+                                            sumber: "HP",
+                                            bundleNo: 0,
+                                            mesinId: "1",
+                                            latitude: position0!.latitude,
+                                            longitude: position0!.longitude);
+
+                                    print(model);
+
+                                    context
+                                        .read<
+                                            HistoryAbsensiOfflineTransferBloc>()
+                                        .add(
+                                            AddHistoryAbsensiOfflineTransferEvent(
+                                                data: model));
+                                  }
+                                },
+                                child: const Center(
+                                  child: Text(
+                                    "SUbmit",
+                                    style: TextStyle(
+                                      fontSize: 18.0,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
                       )
                     ],
-                  ))
+                  )),
+              const SizedBox(
+                height: 20.0,
+              ),
             ],
           ),
         ),

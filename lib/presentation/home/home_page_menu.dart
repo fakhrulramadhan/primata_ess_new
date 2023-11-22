@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:primata_ess_new/bloc/get_view_master_employee/get_view_master_employee_bloc.dart';
 import 'package:primata_ess_new/data/services/login_local_service.dart';
+import 'package:primata_ess_new/presentation/attendance/attendance_page.dart';
 import 'package:primata_ess_new/presentation/login/login_page.dart';
+import 'package:primata_ess_new/presentation/profile/profile_page.dart';
+import 'package:primata_ess_new/presentation/shift_schedule/shift_schedule._page.dart';
 
 class HomePageMenu extends StatefulWidget {
   const HomePageMenu({super.key});
@@ -186,14 +189,15 @@ class _HomePageMenuState extends State<HomePageMenu>
                   ),
                   ListTile(
                     leading: const Icon(Icons.account_box),
-                    title: const Text("My Account"),
+                    title: const Text("My Profile"),
                     onTap: () {
                       Navigator.of(context).pop();
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //       builder: (BuildContext context) => ProfilePage(),
-                      //     ));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                const ProfilePage(),
+                          ));
                     },
                   ),
                   ListTile(
@@ -201,11 +205,12 @@ class _HomePageMenuState extends State<HomePageMenu>
                     title: const Text("My Shift Schedule"),
                     onTap: () {
                       Navigator.of(context).pop();
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //       builder: (BuildContext context) => ProfilePage(),
-                      //     ));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                const ShiftSchedulePage(),
+                          ));
                     },
                   ),
                   ListTile(
@@ -213,6 +218,11 @@ class _HomePageMenuState extends State<HomePageMenu>
                     title: const Text("My Attendance"),
                     onTap: () {
                       Navigator.of(context).pop();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const AttendancePage()),
+                      );
                     },
                   ),
                   ListTile(
